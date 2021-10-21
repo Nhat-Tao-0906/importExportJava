@@ -37,6 +37,7 @@ public class UserService {
     }
 
     public MainResponse<List<User>> createAll(MultipartFile file) throws ApiException{
+        System.out.println("---------------start: " + System.currentTimeMillis());
         XLSXParser<User> xlsxParser = new XLSXParser<>();
         List<User> users = new ArrayList<>();
         try {
@@ -50,6 +51,7 @@ public class UserService {
         }
         MainResponse<List<User>> listUsersResponse = new MainResponse<>();
         listUsersResponse.setData(users);
+        System.out.println("---------------end: " + System.currentTimeMillis());
         return listUsersResponse;
     }
 

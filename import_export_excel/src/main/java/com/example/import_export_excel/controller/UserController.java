@@ -39,6 +39,7 @@ public class UserController {
 
     @GetMapping("/export-user")
     public MainResponse<String> exportUser(HttpServletResponse response) throws IOException{
+        System.out.println("---------------start export: " + System.currentTimeMillis());
         response.setContentType("application/octet-stream");
         String headerKey = "Content-Disposition";
         String headerValue = "attachement; filename=users.xlsx";
@@ -47,6 +48,7 @@ public class UserController {
         List<User> users = userService.getAllForExport();
         UserExportExcel userExcelExport = new UserExportExcel(users);
         userExcelExport.export(response);
+        System.out.println("---------------end export: " + System.currentTimeMillis());
         return new MainResponse<>();
     }
 }
